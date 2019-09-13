@@ -9,109 +9,109 @@ import time
 import sys
 from colorama import Fore, Back, Style
 
-def delay_print(s):
+def delay_print(s): # used for typing letter by letter in prints
     for c in s:
         sys.stdout.write(c)
         sys.stdout.flush()
         time.sleep(.07)
 
-def greeting():
+def greeting():     # function to get names for later dialogue
   
   delay_print("Welcome\n")
   delay_print("What is your name?: ")
   name = input()
   return name
 
-def background():
-  delay_print("Hello " + name + ", your significant other tells you to make a grocery run so you politely comply. You go to the local store and get the items she put on the list. Eggs, milk, the usual. You start walking out of the store, groceries in hand and suddenly everything goes dark... You wake up in a dark, cramped, abyss. You hear an engine and come to the conclusion that you're in the back of someone's trunk..")
+def background(): #context to the story
+  delay_print("Hello " + name + ", your significant other tells you to make a grocery run so you politely comply. You go to the local store and get the items she put on the list. Eggs, milk, the usual. You start walking out of the store, groceries in hand and suddenly everything goes dark... You wake up in a dark, cramped, abyss. You hear an engine and come to the conclusion that you're in the back of someone's trunk..") 
   firstChoice()
 
-def firstChoice():
+def firstChoice(): #Function that gives choice after context
   delay_print(" Do you 'escape' or do you 'wait'?\n")
   choice = input()
-  if (choice == 'escape'):
+  if (choice == 'escape'): #different choices for user
     escape()
   elif (choice== 'wait'):
     wait()
-  else:
+  else: #RECURSION
     delay_print(Fore.RED + "Please pick an option.")
     print(Style.RESET_ALL)
     return firstChoice()
   
 
-def escape():
+def escape(): #context for choice chosen
   delay_print("You pull the emergency hatch and the trunk swings open. You jump out and roll onto a searchrocky road. You injure your leg pretty good with a really deep laceration in your thigh. It is bleeding pretty severely and your binge watching of all those Netflix™ makes you instictively tie off your leg and put pressure on the wound. You're in the middle of nowhere...")
   escapeChoice()
 
-def escapeChoice():
+def escapeChoice(): #second choice after escaping
   delay_print("Do you want to try and 'search' for a way back into civilization or 'rest' and heal? \n")
   choice2 = input()
   if (choice2 == 'rest'):
     rest()
-  elif (choice2 == 'search'):
+  elif (choice2 == 'search'): #2 more choices, one of which leads to other path
     search()
-  else:
+  else: #RECURSION
     delay_print(Fore.RED + "Please pick an option.")
     print(Style.RESET_ALL)
     return escapeChoice()
 
-def rest():
+def rest(): #Death #1
   delay_print("The pain is too excruciating so you try and sleep it off. You find some nice shade under a tree but your open wound becomes infected and you die...")
   gameOver()
 
-def search():
+def search(): #Links to other path in story
   delay_print("You go to the edge of the road and put up your thumb in hopes of hitchhiking your way home. You see the car you had just jumped out of, open trunk and all, coming back from the way it left and you attempt and run but your wound doesn't let you. You fall and you get knocked out yet again")
   wait()
 
-def wait():
+def wait(): #Link between both timelines
   delay_print("After 20 mins, the car stops and the trunk opens with two masked men that tell you to get out.")
   waitChoice()
 
-def waitChoice():
+def waitChoice(): # 2 more choices, one leads to death
   delay_print(" Do you 'punch' the men and run or follow their 'instructions'\n")
   choice3 = input()
   if (choice3 == 'punch'):
     punch()
   elif(choice3 == 'instructions'):
     instructions()
-  else:
+  else: #RECURSION
     delay_print(Fore.RED + "Please pick an option.")
     print(Style.RESET_ALL)
     return waitChoice()
 
-def punch():
+def punch(): #Death #2
   delay_print("You punch one straight in the nose and attempt to run but the other masked man shoots you in the leg and finishes you off with one to the head.")
   gameOver()
 
-def instructions():
+def instructions(): #leads to next and final decision
   delay_print("The bigger masked man motions you to get out, gun in hand, and you swiftly follow orders. You get out and he takes a grip of your arm and hauls you to som sort of office. Stefano, the Mafia Boss, introduces himself. He tells you that you're responsible for the death of one of his guys.")
   instructionsChoice()
 
-def instructionsChoice():
+def instructionsChoice(): #Possible death #3
   delay_print("He offers you a deal for your freedom. He says 'It's simple really, beat me in a fight and you go home, yes?' Do you 'accept' or 'deny' his offer?\n")
   choice4 = input()
   if (choice4 == 'accept'):
     accept()
   elif (choice4 == 'deny'):
     deny()
-  else:
+  else: #RECURSION / FAILSAFE
     delay_print(Fore.RED + "Please pick an option.")
     print(Style.RESET_ALL)
     return instructionsChoice()
 
-def accept():
+def accept(): #Path to happy ending
   delay_print("He loosens his tie and clenches his fist. Stefano is humongous and you realize what you hace gotten yourself into. He waves his guys off and they leave the room. He motions you to swing and you do. You hit him square in the face and he barely flinches. He picks you up and throws you at the bookshelf.  While moanin and groaning on the floor with all the debris surrounding you, you spot a holster under his desk. You crawl towards it and take it out. You point it at him but hesitate. He sees that you are not confident in this choice and chooses to charge you and in the heat of the moment you pull the trigger. In shock you stand there then his two guys come in and you shoot them too. You sit still and truly soak in what you just did. Shocked and seemingly fatigued you limp out of the room and take the still running car back to your town. You throw the gun out of the window and drive home to your family, living with the actions you had just committed, but that doesn't outway another chance to see your love one more time")
   gameOver()
 
-def deny():
+def deny(): #Path to sad ending
   delay_print("He shrugs and waves his guys in and walks out as he points his gun at you and shoots. Before doing so he says 'a true man would've sacrificed himself for his family' and shock fills your body as you realize what he is referring to... Pure guilt and shame takes over and everthing seemingly moves in slow motion as you hit the floor...")
   gameOver()
 
 
-def gameOver():
+def gameOver(): #Fuction to end game in case of death
   delay_print("Game over")
   delay_print(" would you like to play again? 'yes' or 'no' \n")
-  y = str(input())
+  y = str(input()) #Offers to restart to find correct way
   if (y == 'yes' or y == 'Yes'):
     greeting()
   elif (y == 'no' or y == 'No'):
@@ -123,4 +123,4 @@ def gameOver():
 
 name = greeting()
 
-background()
+background() #starting function
