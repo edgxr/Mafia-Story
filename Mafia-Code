@@ -13,7 +13,7 @@ def delay_print(s): # used for typing letter by letter in prints
     for c in s:
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(0)
+        time.sleep(.07)
 
 def greeting():     # function to get names for later dialogue
   
