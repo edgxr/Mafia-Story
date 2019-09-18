@@ -13,7 +13,7 @@ def delay_print(s): # used for typing letter by letter in prints
     for c in s:
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(.07)
+        time.sleep(0)
 
 def greeting():     # function to get names for later dialogue
   
@@ -40,7 +40,7 @@ def firstChoice(): #Function that gives choice after context
   
 
 def escape(): #context for choice chosen
-  delay_print("You pull the emergency hatch and the trunk swings open. You jump out and roll onto a searchrocky road. You injure your leg pretty good with a really deep laceration in your thigh. It is bleeding pretty severely and your binge watching of all those Netflix™ makes you instictively tie off your leg and put pressure on the wound. You're in the middle of nowhere...")
+  delay_print("You pull the emergency hatch and the trunk swings open. You jump out and roll onto a rocky road. You injure your leg pretty good with a really deep laceration in your thigh. It is bleeding pretty severely and your binge watching of all those Netflix™ makes you instictively tie off your leg and put pressure on the wound. You're in the middle of nowhere...")
   escapeChoice()
 
 def escapeChoice(): #second choice after escaping
@@ -113,13 +113,13 @@ def gameOver(): #Fuction to end game in case of death
   delay_print(" would you like to play again? 'yes' or 'no' \n")
   y = str(input()) #Offers to restart to find correct way
   if (y == 'yes' or y == 'Yes'):
-    greeting()
+    firstChoice()
   elif (y == 'no' or y == 'No'):
     delay_print("Thanks for playing")
   else:
     delay_print(Fore.RED + "Please pick an option.")
     print(Style.RESET_ALL)
-    return gameOver()
+    gameOver()
 
 name = greeting()
 
